@@ -40,14 +40,14 @@
                 <form action="#" method="post" class="form-horizontal" onsubmit="return false;">
                     <div class="form-group">
 					<input type="hidden" id="uid" name="state-normal" class="form-control" >
-                        <label class="col-md-3 control-label" for="state-normal">APR Date</label>
+                        <label class="col-md-3 control-label" for="state-normal">Labor Name</label>
                         <div class="col-md-7">
-                            <input type="text" id="aprdate" name="example-datepicker3" class="form-control input-datepicker" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php echo date("Y-m-d");?>">
+                           <input type="text" id="laborname" name="state-normal" class="form-control" tabindex="0" >
                         </div>
 						
-						<label class="col-md-3 control-label" for="state-normal">APR No.</label>
+						<label class="col-md-3 control-label" for="state-normal">Cost</label>
                         <div class="col-md-7">
-                            <input type="text" id="aprno" name="state-normal" class="form-control" tabindex="0" value="<?php echo date("Y-");?>">
+                            <input type="number" id="laborcost" name="state-normal" class="form-control" tabindex="0" value="<?php echo date("Y-");?>">
                         </div>
 
 
@@ -62,8 +62,8 @@
 								
                             </div>
                             <div class="modal-footer">
-                                <button type="button" id="saveapr" class="btn btn-effect-ripple btn-primary" onclick="saveapr();">Save</button>
-								<button type="button" id="updateapr" class="btn btn-effect-ripple btn-primary" onclick="updateapr();">Update</button>
+                                <button type="button" id="saveapr" class="btn btn-effect-ripple btn-primary" onclick="savelabor();">Save</button>
+								<button type="button" id="updateapr" class="btn btn-effect-ripple btn-primary" onclick="updateapr();" disabled>Update</button>
                                 <button type="button" class="btn btn-effect-ripple btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -75,9 +75,9 @@
 	<div class="block full">
         <div class="block-title">
 			
-			<h5>Estimate List</h5>
+			<h5>Labor/Service List</h5>
 			<!--<button type="button" id="addapr" class="pull-right btn btn-effect-ripple btn-primary" href="#addusermodal" data-toggle="modal" onclick="addapr();">Add Estimate</button> -->
-			<button type="button" class="pull-right btn btn-effect-ripple btn-primary"  onclick="addestimate();">Add Estimate</button>
+			<button class="pull-right btn btn-primary" title="Add Labor"  data-toggle="modal" data-target="#addusermodal">Add Labor/Service</button>
 			
 			<?php //print_r($heidirectory);?>
         </div>
@@ -85,29 +85,30 @@
             <table id="example-datatable" class="table table-striped table-bordered table-vcenter table-hover">
                 <thead>
                     <tr>
-						<th>Estimate ID</th>
-                        <th>Estimate Date</th>
-                        <th>Customer</th>
+						<th>Labor Name</th>
+                        <th>Cost</th>
+                        
 						<th></th>
                     </tr>
                 </thead>
                 <tbody>
 				<?php
 				
-				foreach ($estimate_list as $estimates):
+				foreach ($labor_services as $laborservices):
 				//$heiname = strtoupper($hei['instname']);
 				echo "<tr class='odd gradeX'>";
 				
-				echo "<td><a href='estimate/details/".$estimates['estimateid']."'><h4>".$estimates['estimateid']."</h4></a></td>";
-				echo "<td>".mdate('%F %d, %Y',strtotime($estimates['estimate_date']))."</td>";
-				echo "<td>".$estimates['cfname']." ".$estimates['clname']."</td>";
+				echo "<td>
+				<h4>".$laborservices['laborname']."</h4></td>";
+				
+				echo "<td>".$laborservices['laborcost']."</td>";
 				
 			
 				echo "<td class='center'> 
 					
-					<button class='hidden btn btn-primary' title='Edit APR'  onClick='edituser(".$estimates['estimateid'].")'  data-toggle='modal' data-target='#addusermodal'><i class='fa fa-edit'></i></button>
+					<button class='btn btn-primary' title='Edit APR'  onClick='edituser(".$laborservices['laborid'].")'  data-toggle='modal' data-target='#addusermodal'><i class='fa fa-edit'></i></button>
 					
-					<button class='btn btn-danger notification' title='Delete User' id='notification' onClick='deleteapr(".$estimates['estimateid'].")'><i class='fa fa-times'></i></button>
+					<button class='btn btn-danger notification' title='Delete User' id='notification' onClick='deleteapr(".$laborservices['laborid'].")'><i class='fa fa-times'></i></button>
 				</td>";
 				echo "</tr>";
 				

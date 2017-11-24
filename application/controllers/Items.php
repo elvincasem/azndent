@@ -122,9 +122,11 @@ class Items extends CI_Controller
 		$unit = $this->input->post('unit');
 		$purchase_unit = $this->input->post('purchase_unit');
 		$purchase_qty_equivalent = $this->input->post('purchase_qty_equivalent');
+		$application = $this->input->post('application');
+		$part_number = $this->input->post('part_number');
 		
 		
-		$this->items_model->updateitem($itemno,$description,$category,$brand,$supplierid,$unit,$purchase_unit,$purchase_qty_equivalent);
+		$this->items_model->updateitem($itemno,$description,$category,$brand,$supplierid,$unit,$purchase_unit,$purchase_qty_equivalent,$application,$part_number);
 	}
 	
 	public function updatecost(){

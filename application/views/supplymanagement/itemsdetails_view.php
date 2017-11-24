@@ -25,151 +25,7 @@
 				
 				
 				
-				<!-- generate po modal -->
-				<!-- Regular Modal Print PR-->
-                <div id="printinspection" class="modal bg" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                           <div class="modal-header">
-								
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								
-                                
-                            </div> 
-                            <div class="modal-body" id="printbody">
-                                
-								
-								<!-- Input States Block -->
-            <div class="block">
-                
-
-                <!-- Input States Content -->
-              <style>
-
-tr.noBorder td{
-	border:0;
-}
-</style>
-
-<div style="text-align:right;">Appendix 62</div>
-<div style="text-align:center;">INSPECTION AND ACCEPTANCE REPORT</div>
-<br>
-<div>Entity Name:__________________________________<span style="padding-left:100px;">Fund Cluster:_________________</span></div><br>
-<table border="1" style="border:solid 2px; width:800px;">
-
-	<tr><td colspan="6"></td></tr>
-	
-	<tr class="noBorder">
-		<td colspan="4">Supplier: <u><?php echo $deliverydetails['supName']?></u></td>
-		<td colspan="2">IAR No.: ____________________</td>
-		
-	</tr>
-	<tr  class="noBorder">
-		<td colspan="4"  width="400">APR No. <u><?php echo $deliverydetails['aprno']?></u></td>
-		
-		<td colspan="2">Date: ____________________</td>
-		
-	</tr>
-	<tr  class="noBorder">
-		<td colspan="4"  width="400">PO No. <u><?php echo $deliverydetails['pono']?></u></td>
-		
-		<td colspan="2">Invoice No: <u><?php echo $deliverydetails['invoiceno']?></u></td>
-		
-	</tr>
-	<tr  class="noBorder">
-		<td colspan="4"  width="">Requisitioning Office/Dept.:<u> CHED Region 1</u></td>
-		
-		<td colspan="2">Date: ____________________</td>
-		
-	</tr>
-	<tr  class="noBorder">
-		<td colspan="4"  width="400">Responsibility Center Code:____________________</td>
-		
-		<td colspan="2"></td>
-		
-	</tr>
-	
-	
-	
-		
-	<tr style="text-align:center;font-weight:bold;">
-	<td style="width:90px;">Stock/ Property No.</td>
-	<td colspan="3">Description</td>
-	<td>Unit</td>
-	<td>Quantity</td>
-	</tr>
-	<!-- items here -->
-	<?php
-									
-				$totalamount=0;
-				foreach ($dr_asset_list_items as $drlistitems):
-				$amount = $drlistitems['qty'] * $drlistitems['unitprice'];
-				$totalamount=$totalamount+$amount;
-				echo "<tr style='text-align:center;'>";
-				echo "<td>".$drlistitems['assetid']."</td>";
-				echo "<td   colspan='3'>".$drlistitems['asset_particulars']."</td>";
-				echo "<td>".$drlistitems['unit']."</td>";
-				echo "<td>".$drlistitems['qty']."</td>";
-			
 				
-				echo "</tr>";
-				
-				endforeach;
-				
-				?>
-
-	
-	<tr ><td colspan="3" style="text-align:center;font-weight:bold;">INSPECTION</td><td style="text-align:center;font-weight:bold;" colspan="3">ACCEPTANCE</td></tr>
-	
-	
-	<tr ><td colspan="3" style="text-align:center;font-weight:bold;">
-	Date Inspected: ______________________<br><br>
-	<style>#rectangle{
-    width:20;
-    height:20px;
-    background:white;
-	border: 1px solid;
-	float:left;
-}</style>
-	<div style="text-align:left;"><div id="rectangle"></div>Inspected, verified and found in order as to quantity and specifications</div>
-	
-	__________________________________________<br>
-	Inspection Officer/Inspection Committee
-	</td><td style="text-align:center;font-weight:bold;" colspan="3">
-	Date Received: ______________________<br>
-	<div style="text-align:left;"><div id="rectangle"></div> Complete</div>
-	<br>
-	<div style="text-align:left;"><div id="rectangle"></div> Partial (pls. specify quantity)</div>
-	__________________________________________<br>
-	Supply and/or Property Custodian
-	
-	</td></tr>
-	
-	
-	
-	
-</table>
-
-
-
-                <!-- END Input States Content -->
-            </div>
-            <!-- END Input States Block -->
-								
-								
-								
-                            </div>
-                            <div class="modal-footer">
-							
-                                <button type="button" id="printpo" class="btn btn-effect-ripple btn-primary" onclick="printinspection();" ><i class="fa fa-print"></i> Print</button>
-								
-                                <button type="button" class="btn btn-effect-ripple btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END Regular Modal -->
-			
 				
 				
 			<div class="block full">
@@ -252,7 +108,7 @@ tr.noBorder td{
 						
 						
 						<label class="col-md-1 control-label" for="state-normal">Supplier</label>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
 						<select id="supplierid"  class="form-control">
 								<option value="<?php echo $itemsdetails['supplierID'];?>"><?php echo $itemsdetails['supName'];?></option>
 									<?php
@@ -267,6 +123,7 @@ tr.noBorder td{
 							
                         </div>
 						<div class="row"></div>
+						
 						<label class="col-md-2 control-label" for="state-normal">Base Unit</label>
                         <div class="col-md-2">
 							<select id="unitofmeasure"  class="form-control">
@@ -288,6 +145,19 @@ tr.noBorder td{
 						<input type="number" value="1" class="form-control" disabled>
 						</div>
 						
+						
+						<label class="col-md-1 control-label" for="state-normal">Application</label>
+                        <div class="col-md-2">
+                             <input type="text" id="application" name="state-normal" class="form-control" tabindex="0" value="<?php echo $itemsdetails['application'];?>" tabindex="2" >
+							
+                        </div>
+						<label class="col-md-1 control-label" for="state-normal">Part Number</label>
+                        <div class="col-md-2">
+                             <input type="text" id="part_number" name="state-normal" class="form-control" tabindex="0" value="<?php echo $itemsdetails['part_number'];?>" tabindex="2" >
+							
+                        </div>
+						
+						
 						<div class="row"></div>
 						<label class="col-md-2 control-label" for="state-normal">Purchase Unit</label>
                         <div class="col-md-2">
@@ -304,9 +174,9 @@ tr.noBorder td{
                             
 							
                         </div>
-						<label class="col-md-1 control-label" for="state-normal">QTY</label>
+						<label class="col-md-1 control-label" for="state-normal">Base QTY</label>
 						<div class="col-md-1">
-						<input type="number" id="purchase_qty_equivalent" value="1" class="form-control">
+						<input type="number" id="purchase_qty_equivalent" value="<?php echo $itemsdetails['purchase_qty_equivalent'];?>" class="form-control">
 						</div>
 						
 						<div class="row"></div>

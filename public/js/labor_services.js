@@ -1,3 +1,46 @@
+function savelabor(){
+	
+			var laborname = document.getElementById("laborname").value;
+			var laborcost = document.getElementById("laborcost").value;
+			
+			$.ajax({
+			url: 'laborservices/savelabor',
+			type: 'post',
+			data: {laborname:laborname, laborcost:laborcost},
+			success: function(response) {
+				location.reload();
+				//console.log(response);
+				//var lastid = JSON.parse(response);
+				
+			}
+			});
+			//saveapr
+			
+
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function addestimate(){
 	

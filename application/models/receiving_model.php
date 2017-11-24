@@ -71,6 +71,16 @@ class Receiving_model extends CI_Model
 		
 		
 	}
+	
+	public function getitemunit($itemid)
+	{
+		$itemlist = $this->db->query("SELECT * from items where itemNo='$itemid'");
+		$singlerow = $itemlist->result_array();
+		return $singlerow[0];
+		
+		
+	}
+	
 	public function getitemunitlist($itemid)
 	{
 		$itemlist = $this->db->query("SELECT * from items where itemNo='$itemid'");

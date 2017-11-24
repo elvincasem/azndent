@@ -77,9 +77,9 @@ class Items_model extends CI_Model
 		
 	}
 	
-	public function updateitem($itemno,$description,$category,$brand,$supplierid,$unit,$purchase_unit,$purchase_qty_equivalent)
+	public function updateitem($itemno,$description,$category,$brand,$supplierid,$unit,$purchase_unit,$purchase_qty_equivalent,$application,$part_number)
 	{
-		$sql = "update items set description=".$this->db->escape($description).",category=".$this->db->escape($category).",brand=".$this->db->escape($brand).",supplierid=".$this->db->escape($supplierid).",unit=".$this->db->escape($unit).",purchase_unit=".$this->db->escape($purchase_unit).",purchase_qty_equivalent=".$this->db->escape($purchase_qty_equivalent)." where itemNo=".$this->db->escape($itemno)."";
+		$sql = "update items set description=".$this->db->escape($description).",category=".$this->db->escape($category).",brand=".$this->db->escape($brand).",supplierid=".$this->db->escape($supplierid).",unit=".$this->db->escape($unit).",purchase_unit=".$this->db->escape($purchase_unit).",purchase_qty_equivalent=".$this->db->escape($purchase_qty_equivalent).",application=".$this->db->escape($application).",part_number=".$this->db->escape($part_number)." where itemNo=".$this->db->escape($itemno)."";
 
 		//echo $sql;
 		$this->db->query($sql);

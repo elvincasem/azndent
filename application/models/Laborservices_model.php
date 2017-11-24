@@ -1,11 +1,23 @@
 <?php
 
 
-class Estimate_model extends CI_Model
+class Laborservices_model extends CI_Model
 {
 	
+	public function getlaborservices(){
+		$query = $this->db->get('labor_services');
+		return $query->result_array();
+		
+	}
 	
-	public function saveestimate()
+	
+	
+	
+	
+	
+	
+	
+	public function savelabor($laborcost,$laborname)
 	{
 		$this->load->library('session');
 		$this->session;
@@ -17,15 +29,11 @@ class Estimate_model extends CI_Model
 		$now_date= $now->format('Y-m-d');
 		
 		
-		$sql = "INSERT INTO services_estimate (estimate_date,addedby) VALUES (".$this->db->escape($now_date).", ".$this->db->escape($uid).")";
+		$sql = "INSERT INTO labor_services (laborname,laborcost) VALUES (".$this->db->escape($laborname).", ".$this->db->escape($laborcost).")";
 		$this->db->query($sql);
 		
 		
-		$sqlselect = $this->db->query("SELECT MAX(estimateid) AS lastid FROM services_estimate");
-		$lastidinserted = $sqlselect->result_array();
-		//echo json_encode($lastidinserted[0]);
-		$currentid = $lastidinserted[0]['lastid'];
-		echo $currentid;
+		
 		
 		
 	}

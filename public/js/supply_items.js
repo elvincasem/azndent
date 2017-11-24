@@ -76,11 +76,13 @@ function updateitem(){
 	var unit = document.getElementById("unitofmeasure").value;
 	var purchase_unit = document.getElementById("purchase_unit").value;
 	var purchase_qty_equivalent = document.getElementById("purchase_qty_equivalent").value;
+	var application = document.getElementById("application").value;
+	var part_number = document.getElementById("part_number").value;
 	
 	$.ajax({
 		url: '../updateitem',
 		type: 'post',
-		data: {itemno:itemno,description:description,category:category,brand:brand,supplierid:supplierid,unit:unit,purchase_unit:purchase_unit,purchase_qty_equivalent:purchase_qty_equivalent},
+		data: {itemno:itemno,description:description,category:category,brand:brand,supplierid:supplierid,unit:unit,purchase_unit:purchase_unit,purchase_qty_equivalent:purchase_qty_equivalent,application:application,part_number:part_number},
 		success: function(response) {
 			console.log(response);
 			//location.reload();

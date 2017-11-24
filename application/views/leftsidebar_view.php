@@ -21,27 +21,10 @@
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-								<!-- Purchases -->
-                                <li class="hidden<?php echo $purchasesclass;?>">
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-ruble sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Purchases</span></a>
-                                    <ul>
-										<li>
-                                            <a href="<?=base_url()?>apr" class="<?php echo $aprclass;?>"><i class="fa fa-bank sidebar-nav-icon"></i>Agency Procurement Request</a>
-                                        </li>
-										<li>
-                                            <a href="<?=base_url()?>purchaserequest" class="<?php echo $prclass;?>"><i class="fa fa-file-text-o sidebar-nav-icon"></i>Purchase Request</a>
-                                        </li>
-										<li>
-                                            <a href="<?=base_url()?>purchaseorder" class="<?php echo $poclass;?>"><i class="fa fa-file-text-o sidebar-nav-icon"></i>Purchase Order</a>
-                                        </li>
-										
-										
-										
-									</ul>
-								</li>
+								
 								<!-- Services -->
 								
-                                <li class="<?php //echo $purchasesclass;?>">
+                                <li class="<?php //echo $servicesclass;?>">
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-ruble sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Services</span></a>
                                     <ul>
 										<li>
@@ -54,7 +37,10 @@
                                             <a href="<?=base_url()?>purchaseorder" class="<?php //echo $poclass;?>"><i class="fa fa-file-text-o sidebar-nav-icon"></i>Service Billing</a>
                                         </li>
 										<li>
-                                            <a  class="<?php //echo $employeesclass;?>" href="<?=base_url()?>employees" ><i class="gi gi-group sidebar-nav-icon"></i>Customers</a>
+                                            <a  class="<?php //echo $employeesclass;?>" href="<?=base_url()?>customers" ><i class="gi gi-group sidebar-nav-icon"></i>Customers</a>
+                                        </li>
+										<li>
+                                            <a  class="<?php //echo $employeesclass;?>" href="<?=base_url()?>laborservices" ><i class="gi gi-group sidebar-nav-icon"></i>Labor/Services</a>
                                         </li>
 										
 										

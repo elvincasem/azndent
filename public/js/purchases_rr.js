@@ -178,14 +178,16 @@ function showitemunit(){
 		type: 'post',
 		data: {itemid: itemid},
 		success: function(response) {
-			//console.log(response);
+			console.log(response);
 			var uom = JSON.parse(response);
-			//console.log(uom);
-			//console.log(uom['0'].unit);
+			console.log(uom);
+			
+			console.log(uom['0'].unit);
 			//document.getElementById("inventoryqty").innerHTML = uom.inventory_qty;
 				
-				$("#itemunit").append("<option value='"+uom.unit+"'>"+uom.unit+"</option>");
-			
+				$("#itemunit").append("<option value='"+uom['0'].unit+"'>"+uom['0'].unit+"</option>");
+				$("#itemunit").append("<option value='"+uom['1'].unit+"'>"+uom['1'].unit+"("+uom['1'].qty+")</option>");
+			/*
 				var max = 20;
 				for (var ctr = 0; ctr <= max; ctr++) { 
 					try{
@@ -199,6 +201,8 @@ function showitemunit(){
 						return 0;	
 					}
 				}
+				
+				*/
 				
 				
 				

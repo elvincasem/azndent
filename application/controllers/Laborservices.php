@@ -1,19 +1,19 @@
 <?php
 
-class Estimate extends CI_Controller
+class Laborservices extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
 		//model module
-		$this->load->model('estimate_model');
-		$this->load->model('asset_model');
+		$this->load->model('laborservices_model');
+		//$this->load->model('asset_model');
 		$this->load->helper('date');
 		//view module
 		 $this->data = array(
-            'title' => 'Estimate of Repair',
+            'title' => 'Labor/Services',
 			'servicesclass' => 'active',
-			'estimateclass' => 'active',
+			'estimateclass' => '',
 			'purchasesclass' => '',
 			'aprclass' => '',
 			'prclass' => '',
@@ -34,7 +34,7 @@ class Estimate extends CI_Controller
 			'suppliersclass' => '',
 			'employeesclass' => '',
 			'inventoryclass' => '',
-			'subnavtitle' => 'Estimate of Repair',
+			'subnavtitle' => 'Labor and Services List',
 			'typeahead' => '1',
 			'parclass' => '',
 			'icsclass' => '',
@@ -46,7 +46,7 @@ class Estimate extends CI_Controller
 			);
 		//javascript module
 		$this->js = array(
-            'jsfile' => 'services_estimate.js',
+            'jsfile' => 'labor_services.js',
 			'typeahead' => '0'
 			);
 	}
@@ -57,14 +57,46 @@ class Estimate extends CI_Controller
 		$js = $this->js;
 		//show apr list
 		
-		$data['estimate_list'] = $this->estimate_model->getestimatelist();
+		$data['labor_services'] = $this->laborservices_model->getlaborservices();
 		
 		//display apr
 		$this->load->view('inc/header_view');
-		$this->load->view('services/estimate_view',$data);
+		$this->load->view('services/laborservice_view',$data);
 		$this->load->view('inc/footer_view',$js);
 		
 	}
+	
+	public function savelabor(){
+		
+		$laborname = $this->input->post('laborname');
+		$laborcost = $this->input->post('laborcost');
+		$lastid = $this->laborservices_model->savelabor($laborname,$laborcosts);
+		echo $lastid;
+		//echo json_encode($duplicatecount);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public function newestimate()
 	{

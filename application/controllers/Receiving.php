@@ -118,7 +118,20 @@ class Receiving extends CI_Controller
 	
 	public function getitemunit(){
 		$itemid = $this->input->post('itemid');
-				
+		
+		$item_uom = $this->receiving_model->getitemunit($itemid);
+		
+		
+		$unit_array = array();
+		$unit_array[0]['unit'] = $item_uom['unit'];
+		$unit_array[0]['qty'] = 1;
+		$unit_array[1]['unit'] = $item_uom['purchase_unit'];
+		$unit_array[1]['qty'] = $item_uom['purchase_qty_equivalent'];
+		//print_r($unit_array);
+		echo json_encode($unit_array);
+/*
+			
+		
 		$rows = $this->receiving_model->getitemunitlist($itemid);
 		$conversioncount = $this->receiving_model->checkconvertion($itemid);
 		//echo $conversioncount;
@@ -140,7 +153,7 @@ class Receiving extends CI_Controller
 			//echo $sqlselect;
 			//$conn = null;
 		}
-
+*/
 		
 	}
 	public function getitemprice(){
