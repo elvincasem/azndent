@@ -241,7 +241,7 @@
 				//echo "<td><a href='receiving/details/".$rrlist['deliveryid']."'>".$rrlist['deliveryid']."</a></td>";
 				echo "<td>".$items_list['itemNo']."</a></td>";
 				
-				echo "<td><a href='items/details/".$items_list['itemNo']."'>".$items_list['description']."</a></td>";
+				echo "<td><a href='items/details/".$items_list['itemNo']."'>".$items_list['itemname']."</a></td>";
 				echo "<td>".$items_list['inventory_qty']."</td>";
 				echo "<td>".$items_list['unit']."</td>";
 				//echo "<td>".mdate('%F %d, %Y',strtotime($items_list['dateacquired']))."</td>";

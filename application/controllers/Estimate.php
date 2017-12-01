@@ -138,7 +138,9 @@ class Estimate extends CI_Controller
 	
 		$data['customer_list'] = $this->estimate_model->getcustomerlist();
 		$data['labor_services_list'] = $this->estimate_model->labor_services();
-
+		$data['parts_list'] = $this->estimate_model->parts_list();
+		$data['addedparts_list'] = $this->estimate_model->addedparts_list($id);
+		
 		
 		$this->load->view('inc/header_view');
 		$this->load->view('services/estimate_details_view',$data);
@@ -162,6 +164,54 @@ class Estimate extends CI_Controller
 		//echo json_encode($duplicatecount);
 		
 	}
+	public function savenewcustomer()
+	{
+		$cfullname = $this->input->post('cfullname');
+		$caddress = $this->input->post('caddress');
+		$ccontactno = $this->input->post('ccontactno');
+		$ccompany = $this->input->post('ccompany');
+		$this->estimate_model->savenewcustomer($cfullname,$caddress,$ccontactno,$ccompany);
+		
+	}
+	public function addotherlabor_list(){
+		$estimateid = $this->input->post('estimateid');
+		$otherlabor = $this->input->post('otherlabor');
+
+		$this->estimate_model->addotherlabor_list($estimateid,$otherlabor);
+		
+		//echo json_encode($duplicatecount);
+		
+	}
+	public function getpartsdetails(){
+		$itemno = $this->input->post('itemno');
+		$labordetails = $this->estimate_model->getpartsdetails($itemno);
+		echo json_encode($labordetails);
+	}
+	
+	public function addpartsamount(){
+		$itemno = $this->input->post('itemno');
+		$itemqty = $this->input->post('itemqty');
+		$partsamount = $this->input->post('partsamount');
+		$estimateid = $this->input->post('estimateid');
+
+		$this->estimate_model->addpartsamount($itemno,$itemqty,$partsamount,$estimateid);
+		
+		//echo json_encode($duplicatecount);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

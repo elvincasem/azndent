@@ -138,11 +138,118 @@ function addlabor_list(){
 			
 
 }	
+function savenewcustomer(){
+	
+	cfullname = document.getElementById("cfullname").value;
+	caddress = document.getElementById("caddress").value;
+	ccontactno = document.getElementById("ccontactno").value;
+	ccompany = document.getElementById("ccompany").value;
+	
+	if(cfullname==""){
+		$.bootstrapGrowl('<h4><strong>Error!</strong></h4> <p>Full Name must not be empty!</p>', {
+				type: 'danger',
+				delay: 3000,
+				allow_dismiss: true,
+				offset: {from: 'top', amount: 20}
+		});
+	}else{
+		
+			$.ajax({
+			url: '../savenewcustomer',
+			type: 'post',
+			data: {cfullname: cfullname,caddress:caddress,ccontactno:ccontactno,ccompany:ccompany},
+			success: function(response) {
+				console.log(response);
+				//var lastid = JSON.parse(response);
+				//window.location.href = "estimate/details/"+lastid;
+				//location.reload();
+				
+			}
+			});
+			
+	}
+			
+			
 
+}	
 
+function addotherlabor_list(){
+	
+			otherlabor = document.getElementById("otherlabor").value;
+			estimateid = document.getElementById("estimateid").value;
+			
+			
+			$.ajax({
+			url: '../addotherlabor_list',
+			type: 'post',
+			data: {estimateid: estimateid,otherlabor:otherlabor},
+			success: function(response) {
+				//console.log(response);
+				$.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>Estimate Updated!</p>', {
+				type: 'success',
+				delay: 3000,
+				allow_dismiss: true,
+				offset: {from: 'top', amount: 20}
+				});
+				
+				$('#general-table').load(document.URL +  ' #general-table');
+				
+			}
+			});
+			
+			document.getElementById("otherlabor").value = "";
+			
+			
 
+}
 
+function displaypartsamount(){
+	itemno = document.getElementById("itemno").value;
+	//get item details
+		$.ajax({
+			url: '../getpartsdetails',
+			type: 'post',
+			data: {itemno: itemno},
+			success: function(response) {
+				//console.log(response);
+				var data = JSON.parse(response);
+				//console.log(data);
+				document.getElementById("partsamount").value=data[0].price;
+			
+			}
+		});
+		
+}
+function addpartsamount(){
+	
+			itemno = document.getElementById("itemno").value;
+			itemqty = document.getElementById("partsitemqty").value;
+			partsamount = document.getElementById("partsamount").value;
+			estimateid = document.getElementById("estimateid").value;
+			
+			$.ajax({
+			url: '../addpartsamount',
+			type: 'post',
+			data: {itemno: itemno,itemqty:itemqty,partsamount:partsamount,estimateid:estimateid},
+			success: function(response) {
+				//console.log(response);
+				$.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>Estimate Updated!</p>', {
+				type: 'success',
+				delay: 3000,
+				allow_dismiss: true,
+				offset: {from: 'top', amount: 20}
+				});
+				
+				$('#general-table2').load(document.URL +  ' #general-table2');
+				
+			}
+			});
+			
+			document.getElementById("otherlabor").value = "";
+			
+			
 
+}
 
 
 

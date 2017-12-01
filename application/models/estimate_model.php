@@ -137,7 +137,80 @@ class Estimate_model extends CI_Model
 
 	}
 	
+	public function savenewcustomer($cfullname,$caddress,$ccontactno,$ccompany)
+	{
+		
+		$data = array(
+               'cfullname' => $cfullname,
+               'caddress' => $caddress,
+               'ccontactno' => $ccontactno,
+               'ccompany' => $ccompany
+            );
+
+		$this->db->insert('customer', $data); 
+
+	}
 	
+	public function addotherlabor_list($estimateid,$otherlabor)
+	{
+
+		$data = array(
+               'ls_estimateid' => $estimateid,
+               'ls_jobdescription' => $otherlabor
+            );
+
+		$this->db->insert('services_estimate_ls_items', $data); 
+
+	}
+	
+		public function parts_list()
+	{
+
+		//$this->db->get('items');
+		$this->db->select('*');
+		$this->db->where('inventory_qty >', 0);
+		$query = $this->db->get('items');
+		//$query = $this->db->get_where('items', array('inventory_qty' >= 1));
+		return $query->result_array();
+		
+		
+	}
+	public function getpartsdetails($itemno)
+	{
+
+		$query = $this->db->get_where('items', array('itemNo' => $itemno));
+		return $query->result_array();
+		
+		
+	}
+	public function addpartsamount($itemno,$itemqty,$partsamount,$estimateid)
+	{
+		//$this->db->select("*");
+		$query = $this->db->get_where('items', array('itemNo' => 2));
+		$partsprofile = $query->result_array();
+		//print_r($partsprofile[0]['unit']);
+
+		
+		$data = array(
+               'parts_itemno' => $itemno,
+               'parts_qty' => $itemqty,
+               'parts_unit' => $partsprofile[0]['unit'],
+               'parts_particular' => $partsprofile[0]['itemname'],
+               'parts_amount' => $partsamount,
+               'parts_estimateid' => $estimateid
+               
+            );
+
+		$this->db->insert('services_estimate_parts_items', $data); 
+		
+	}
+	public function addedparts_list($id)
+	{
+
+		$query = $this->db->get_where('services_estimate_parts_items', array('parts_estimateid' => $id));
+		return $query->result_array();
+		
+	}
 	
 	
 	
