@@ -148,6 +148,7 @@ class Estimate extends CI_Controller
 		
 	}
 	
+	
 
 	public function getlabordetails(){
 		$laborid = $this->input->post('laborid');
@@ -200,6 +201,44 @@ class Estimate extends CI_Controller
 		
 	}
 	
+	public function savepartscost(){
+		$partsid = $this->input->post('partsid');
+		$sp_amount = $this->input->post('sp_amount');
+		$lastid = $this->estimate_model->savepartscost($partsid,$sp_amount);
+		echo $lastid;
+		//echo json_encode($duplicatecount);
+		
+	}
+	public function deletepartsitem(){
+		$partsid = $this->input->post('partsid');
+		$this->estimate_model->deletepartsitem($partsid);
+	}
+	public function printestimate($id)
+	{
+		/*
+		$data = $this->data;
+		$js = $this->js;
+		$data['estimateid'] = $id;
+		$data['estimatemaindetails'] = $this->estimate_model->getestimatemaindetails($id);
+		
+		//show apr list
+		$data['estimate_ls_items'] = $this->estimate_model->get_ls_items($id);
+		$data['estimate_parts_items'] = $this->estimate_model->get_parts_items($id);
+		$data['labor_list'] = $this->estimate_model->getlaborlist($id);
+	
+		$data['customer_list'] = $this->estimate_model->getcustomerlist();
+		$data['labor_services_list'] = $this->estimate_model->labor_services();
+		$data['parts_list'] = $this->estimate_model->parts_list();
+		$data['addedparts_list'] = $this->estimate_model->addedparts_list($id);
+		
+		
+		$this->load->view('inc/header_view');
+		$this->load->view('services/estimate_details_view',$data);
+		$this->load->view('inc/footer_view',$js);
+		*/
+		echo "test";
+		
+	}
 	
 	
 	

@@ -250,6 +250,84 @@ function addpartsamount(){
 			
 
 }
+function savepartscost(id){
+	
+		var sp_amount = document.getElementById("partsitem-"+id).value;
+			
+			//check duplicate aprno
+			$.ajax({
+			url: '../savepartscost',
+			type: 'post',
+			data: {partsid: id,sp_amount:sp_amount},
+			success: function(response) {
+				//console.log(response);
+				$.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>Parts Updated!</p>', {
+				type: 'success',
+				delay: 3000,
+				allow_dismiss: true,
+				offset: {from: 'top', amount: 20}
+				});
+				
+				$('#general-table').load(document.URL +  ' #general-table');
+				
+			}
+			});
+			//saveapr
+			
+
+}	
+
+function deletepartsitem(id){
+	
+	var r = confirm("Are your sure you want to delete this Part?");
+    if (r == true) {
+        //alert ("You pressed OK!");
+		
+		
+		$.ajax({
+                    url: '../deletepartsitem',
+                    type: 'post',
+                    data: {partsid: id},
+                    success: function(response) {
+						$.bootstrapGrowl('<h4><strong>Success!</strong></h4> <p>Parts deleted!</p>', {
+						type: 'success',
+						delay: 3000,
+						allow_dismiss: true,
+						offset: {from: 'top', amount: 20}
+						});
+						
+						$('#general-table2').load(document.URL +  ' #general-table2');
+                    }
+                });
+		
+    } if(r == false) {
+        //txt = "You pressed Cancel!";
+		
+    }
+	
+}
+
+function printestimate(id){
+	
+	
+    /*var divToPrint = document.getElementById('example-datatable');
+    	var htmlToPrint = '' +
+        '<style type="text/css">' +
+        'table th, table td {' +
+        'border:1px solid #000;' +
+        'padding;0.5em;' +
+        '}' +
+        '</style>'; */
+    //htmlToPrint += divToPrint.outerHTML;
+    newWin = window.open("../printestimate/"+12);
+   // newWin.document.write(htmlToPrint);
+    newWin.print();
+    setTimeout(function(){
+		newWin.close();
+	},50);
+   
+	
+}
 
 
 

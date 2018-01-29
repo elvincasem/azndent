@@ -211,6 +211,28 @@ class Estimate_model extends CI_Model
 		return $query->result_array();
 		
 	}
+	public function savepartscost($partsid,$sp_amount)
+	{
+		$data = array(
+               'parts_amount' => $sp_amount
+            );
+		$this->db->where('partsid', $partsid);
+		$this->db->update('services_estimate_parts_items', $data); 
+
+	}
+	
+	public function deletepartsitem($partsid)
+	{
+		$this->db->delete('services_estimate_parts_items', array('partsid' => $partsid)); 
+
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

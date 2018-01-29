@@ -92,7 +92,7 @@
 				
 					<h5>EoR Details: # <?php echo $estimatemaindetails['estimateid'];?></h5>
 					
-					<button type="button" id="addapr" class="pull-right btn btn-effect-ripple btn-primary" href="#printaprmodal" data-toggle="modal" onclick="aprpreview(<?php echo $estimateid;?>);"><i class="fa fa-print"></i> Print Estimate</button>
+					<button type="button" id="addapr" class="pull-right btn btn-effect-ripple btn-primary" href="#" data-toggle="modal" onclick="printestimate(<?php echo $estimateid;?>);"><i class="fa fa-print"></i> Print Estimate</button>
 				</div>
 				<form action="#" method="post" class="form-horizontal" onsubmit="return false;">
 				<div class="form-group">
@@ -301,14 +301,16 @@
 												echo "<td>".$parts_added['parts_qty']."</td>";
 												echo "<td>".$parts_added['parts_unit']."</td>";
 												echo "<td>".$parts_added['parts_particular']."</td>";
-												echo "<td>".$parts_added['parts_amount']."</td>";
+												echo "<td><input class='form-control' type='text' value='".$parts_added['parts_amount']."' id='partsitem-".$parts_added['partsid']."'> </td>";
+												//echo "<td>".$parts_added['parts_amount']."</td>";
 												echo "<td>".number_format((float)$parts_added['parts_amount']*(int)$parts_added['parts_qty'],2)."</td>";
+												echo "<td><button  class='btn btn-primary' title='Save Price' onClick='savepartscost(".$parts_added['partsid'].")'><i class='gi gi-floppy_saved'></i></button> <button class='btn btn-danger notification' title='Delete' id='notification' onClick='deletepartsitem(".$parts_added['partsid'].")'><i class='fa fa-times'></i></button></td>";
 												echo "</tr>";
 												$total_parts+=(float)$parts_added['parts_amount']*(int)$parts_added['parts_qty'];
 											endforeach;
 										?>
 								<tr>
-									<td colspan="3">Total Parts:<input type="text" id="itemqty" name="state-normal" class="form-control" tabindex="0" value="<?php echo number_format($total_parts,2);?>" disabled></td>
+									<td colspan="6">Total Parts:<input type="text" id="itemqty" name="state-normal" class="form-control" tabindex="0" value="<?php echo number_format($total_parts,2);?>" disabled></td>
 								</tr>
 									</tbody>
 						</table>
