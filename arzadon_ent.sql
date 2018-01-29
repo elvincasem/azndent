@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate - MySQL GUI v8.2 
-MySQL - 5.5.34 : Database - arzadon_ent
+MySQL - 5.6.17 : Database - arzadon_ent
 *********************************************************************
 */
 
@@ -91,11 +91,11 @@ CREATE TABLE `customer` (
   `ccompany` varchar(500) NOT NULL,
   `customer_time_stamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`customerid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `customer` */
 
-insert  into `customer`(`customerid`,`cfullname`,`caddress`,`ccontactno`,`ccompany`,`customer_time_stamp`) values (1,'Elvin Casem','address','09468147457','Evenly Ten Web Solutions','2017-11-05 16:12:42');
+insert  into `customer`(`customerid`,`cfullname`,`caddress`,`ccontactno`,`ccompany`,`customer_time_stamp`) values (1,'Elvin Casem','address','09468147457','Evenly Ten Web Solutions','2017-11-05 16:12:42'),(2,'adf','asdf','adsf','asdf','2017-12-01 19:14:38');
 
 /*Table structure for table `employee` */
 
@@ -408,7 +408,7 @@ CREATE TABLE `items` (
 
 /*Data for the table `items` */
 
-insert  into `items`(`itemNo`,`itemname`,`description`,`category`,`unit`,`unitCost`,`purchase_unit`,`purchase_qty_equivalent`,`price`,`inventory_qty`,`supplierID`,`brand`,`warehouseid`,`application`,`part_number`) values (2,'Bearing','','Office Supply','PC',0.00,'PC',1,0.00,0,0,'',1,'','');
+insert  into `items`(`itemNo`,`itemname`,`description`,`category`,`unit`,`unitCost`,`purchase_unit`,`purchase_qty_equivalent`,`price`,`inventory_qty`,`supplierID`,`brand`,`warehouseid`,`application`,`part_number`) values (2,'Bearing','','Office Supply','PC',0.00,'PC',1,20.00,1,0,'',1,'','');
 
 /*Table structure for table `items_buom` */
 
@@ -498,7 +498,7 @@ CREATE TABLE `labor_services` (
   `laborname` varchar(500) DEFAULT NULL,
   `laborcost` double(10,2) DEFAULT '0.00',
   PRIMARY KEY (`laborid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `labor_services` */
 
@@ -777,11 +777,11 @@ CREATE TABLE `services_estimate` (
   `addedby` varchar(500) DEFAULT NULL,
   `estimate_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`estimateid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `services_estimate` */
 
-insert  into `services_estimate`(`estimateid`,`estimate_date`,`customerid`,`platenumber`,`vehicletype`,`addedby`,`estimate_timestamp`) values (3,'2017-07-26',1,'p','v','1','2017-07-26 11:11:22'),(4,'2017-07-26',NULL,NULL,NULL,'1','2017-07-26 11:11:45'),(5,'2017-07-26',NULL,NULL,NULL,'1','2017-07-26 11:12:02'),(6,'2017-08-15',NULL,NULL,NULL,'1','2017-08-15 09:13:41'),(7,'2017-09-04',NULL,NULL,NULL,'1','2017-09-04 19:57:23'),(8,'2017-11-23',1,'','','1','2017-11-23 20:49:44'),(9,'2017-11-23',NULL,NULL,NULL,'1','2017-11-23 20:55:41');
+insert  into `services_estimate`(`estimateid`,`estimate_date`,`customerid`,`platenumber`,`vehicletype`,`addedby`,`estimate_timestamp`) values (3,'2017-07-26',1,'p','v','1','2017-07-26 11:11:22'),(4,'2017-07-26',NULL,NULL,NULL,'1','2017-07-26 11:11:45'),(5,'2017-07-26',NULL,NULL,NULL,'1','2017-07-26 11:12:02'),(6,'2017-08-15',NULL,NULL,NULL,'1','2017-08-15 09:13:41'),(7,'2017-09-04',NULL,NULL,NULL,'1','2017-09-04 19:57:23'),(8,'2017-11-23',1,'','','1','2017-11-23 20:49:44'),(9,'2017-11-23',NULL,NULL,NULL,'1','2017-11-23 20:55:41'),(10,'2017-12-01',1,'123456','Sedan','1','2017-12-01 18:59:24');
 
 /*Table structure for table `services_estimate_ls_items` */
 
@@ -791,14 +791,14 @@ CREATE TABLE `services_estimate_ls_items` (
   `laborserviceid` bigint(20) NOT NULL AUTO_INCREMENT,
   `ls_estimateid` bigint(20) DEFAULT NULL,
   `ls_jobdescription` text,
-  `ls_amount` double(10,2) DEFAULT NULL,
+  `ls_amount` double(10,2) DEFAULT '0.00',
   `ls_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`laborserviceid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `services_estimate_ls_items` */
 
-insert  into `services_estimate_ls_items`(`laborserviceid`,`ls_estimateid`,`ls_jobdescription`,`ls_amount`,`ls_timestamp`) values (2,3,'Leak Vacuum and Freon',250.00,'2017-11-05 17:29:45'),(3,3,'Leak Vacuum and Freon',900.00,'2017-11-05 17:25:19'),(4,3,'Freon Charging',300.00,'2017-11-05 17:27:54'),(6,3,'Replace Compressor Filter',150.00,'2017-11-06 06:17:45');
+insert  into `services_estimate_ls_items`(`laborserviceid`,`ls_estimateid`,`ls_jobdescription`,`ls_amount`,`ls_timestamp`) values (2,3,'Leak Vacuum and Freon',250.00,'2017-11-05 17:29:45'),(3,3,'Leak Vacuum and Freon',900.00,'2017-11-05 17:25:19'),(4,3,'Freon Charging',300.00,'2017-11-05 17:27:54'),(6,3,'Replace Compressor Filter',150.00,'2017-11-06 06:17:45'),(7,10,'Leak Vacuum and Freon',400.00,'2017-12-01 21:35:45'),(8,10,'other labor',120.00,'2017-12-01 21:46:30'),(9,10,'another labor',120.00,'2017-12-01 21:46:33');
 
 /*Table structure for table `services_estimate_parts_items` */
 
@@ -807,15 +807,18 @@ DROP TABLE IF EXISTS `services_estimate_parts_items`;
 CREATE TABLE `services_estimate_parts_items` (
   `partsid` bigint(20) NOT NULL AUTO_INCREMENT,
   `parts_estimateid` bigint(20) DEFAULT NULL,
+  `parts_itemno` bigint(20) DEFAULT NULL,
   `parts_qty` int(11) DEFAULT NULL,
   `parts_unit` varchar(500) DEFAULT NULL,
   `parts_particular` varchar(500) DEFAULT NULL,
   `parts_amount` double(10,2) DEFAULT NULL,
   `parts_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`partsid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `services_estimate_parts_items` */
+
+insert  into `services_estimate_parts_items`(`partsid`,`parts_estimateid`,`parts_itemno`,`parts_qty`,`parts_unit`,`parts_particular`,`parts_amount`,`parts_timestamp`) values (4,10,2,5,'PC','Bearing',20.00,'2017-12-02 11:30:10');
 
 /*Table structure for table `settings_article` */
 
